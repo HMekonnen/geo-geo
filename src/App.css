@@ -1,0 +1,55 @@
+body{
+  background-color: azure;
+}
+
+.App{
+  text-align: center;
+}
+
+.Map{
+  border: double;
+  width: 1150px;
+  height: 1100px;
+  margin-left: 20%;
+  
+  
+}
+
+.Nav{
+  text-align: center;
+}
+
+.Flag-Display{
+
+  box-sizing:content-box;
+ height: 30%;
+ width: 35%;
+border: double;
+margin-left: 0%;
+background-color: gray;
+  
+  
+}
+
+.Flag{
+ box-sizing: content-box;
+ height: 28%;
+ width: 33%;
+}
+
+.Facts-Display{
+  box-sizing:content-box;
+  height: 30%;
+  width: 35%;
+ border: double black;
+ background-color: gray;
+   
+}
+
+.Facts{
+  
+    box-sizing: content-box;
+    border: double black;
+    height: 30%;
+    width: 35%;
+   }
