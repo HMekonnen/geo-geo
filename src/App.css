@@ -53,3 +53,18 @@ background-color: gray;
     height: 30%;
     width: 35%;
    }
+
+   .US-map{
+    border: double;
+    width: 1150px;
+    height: 785px;
+    margin-left: 20%;
+    
+   }
+
+.State-Details{
+  box-sizing: content-box;
+  border: double black;
+  height: 30%;
+  width: 18%;
+}
