@@ -67,4 +67,13 @@ background-color: gray;
   border: double black;
   height: 30%;
   width: 18%;
+  margin-left: 1%;
+}
+
+.Default-Flag{
+  box-sizing:content-box;
+  height: 80%;
+  width: 85%;
+ border: double;
+
 }

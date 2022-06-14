@@ -5,7 +5,8 @@ import Map from './components/Map';
 import Trivia from './components/Trivia'
 import { Routes, Route, Link } from 'react-router-dom';
 import React from "react";
-import USA from './components/USA';
+// import USA from './components/USA';
+import US from './components/US/index.';
 
 
 
@@ -25,15 +26,16 @@ function App() {
       <li> <Link to="/worldmap">World Map</Link> </li>
       <li> <Link to="/USA">U.S Map</Link> </li>
       <li> <Link to="/trivia">Trivia</Link> </li>
-
+     
       </nav>
 
      <Routes>
 
      <Route path='/' element={<Home  />} />
      <Route path='/worldmap' element={<Map  />} />
-     <Route path='/USA' element={<USA  />} />
+     {/* <Route path='/USA' element={<USA  />} /> */}
      <Route path='/trivia' element={<Trivia  />} />
+     <Route path='/USA' element={<US  />} />
 
 
      </Routes>

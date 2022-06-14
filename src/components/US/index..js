@@ -7,11 +7,9 @@ import {
   Annotation,
 } from "react-simple-maps";
 
+import allStates from "./allStates.json";
+
 import { geoCentroid } from "d3-geo";
-
-
-
-import allstates from "./allstates.json";
 
 import axios from "axios";
 
@@ -29,70 +27,53 @@ const offsets = {
   DC: [49, 21],
 };
 
-function USA() {
-  const [content, setContent] = useState("");
+function Testing() {
+  const [flag, setFlag] = useState("");
 
-  const [flag, setFlag] = useState({
-      flag:""
-  })
+  const [stateName, setStateName] = useState("");
 
-  const stateName = async (name) => {
+  const stateFlag = async (name) => {
     try {
-      await setContent(`${name}`);
- 
-    } catch (e) {}
-  };
-
-  
-
-  const test = content.toLowerCase().replace(/\s/g, "");
-  const final = test.replace(/\s/g, "");
-
-  console.log("test",test)
-  console.log("final",final)
-  
-
-  const stateFlag = async (final) => {
-    try {
-        
+      console.log("name", name);
 
       const res = await axios.get(
-        `https://cdn.civil.services/us-states/flags/${final}-small.png`
-        
-        // Two word states return status 203 due to % and spacing. See line 49 for attempted solution. 
+        `https://cdn.civil.services/us-states/flags/${name
+          .toLowerCase()
+          .replace(/\s/g, "-")}-small.png`
 
-      ); 
-    
+ 
+      );
 
-      console.log("res",res)
+      console.log("res", res);
 
-      const details = res.config.url
+      const details = res.config.url;
 
-      console.log(details)
-      
-     
-setFlag(details)
-     
+      console.log(details);
+
+      setFlag(details);
+      setStateName(name);
     } catch (e) {}
   };
-  console.log(flag)
-
+  console.log(flag);
+  console.log(stateName);
   return (
     <>
-    <h1>U.S Map</h1>
+      <h1>U.S Map</h1>
       <div className="State-Details">
-        <h2>{content}</h2>
-        {
-         flag ? 
-          <img className="State-Flag" src={flag} alt={`Flag of ${content} `} />
-         : 
+        <h2>{stateName}</h2>
+        {flag ? (
           <img
-            className="No-Flag"
-            src={"https://i.ytimg.com/vi/qYv0J7rM7pc/maxresdefault.jpg"}
-            alt={"Temporarily unavailable"}
+            className="State-Flag"
+            src={flag}
+            alt={`Flag of ${stateName} `}
           />
-        
-        }
+        ) : (
+          <img
+            className="Default-Flag"
+            src={"http://www.9to5carwallpapers.com/wp-content/uploads/2017/08/American-Flag-Waving-free-hdWallpapersimages.jpg"}
+            alt={"US Flag"}
+          />
+        )}
       </div>
       <div className="US-map">
         <ComposableMap projection="geoAlbersUsa">
@@ -106,24 +87,23 @@ setFlag(details)
                     geography={geo}
                     onClick={() => {
                       const { name } = geo.properties;
-                      stateName(name);
-                      stateFlag(name.toLowerCase())
+
+                      stateFlag(name);
                     }}
                     onMouseEnter={() => {
                       const { name } = geo.properties;
-                      
                     }}
                     style={{
+                      fill: "#DDD",
                       hover: {
                         fill: "#F53",
-                        //   outline: "none",
                       },
                     }}
                   />
                 ))}
                 {geographies.map((geo) => {
                   const centroid = geoCentroid(geo);
-                  const cur = allstates.find((s) => s.val === geo.id);
+                  const cur = allStates.find((s) => s.val === geo.id);
                   return (
                     <g key={geo.rsmKey + "-name"}>
                       {cur &&
@@ -162,4 +142,4 @@ setFlag(details)
   );
 }
 
-export default USA;
+export default Testing;
