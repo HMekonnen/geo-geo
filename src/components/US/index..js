@@ -7,6 +7,10 @@ import {
   Annotation,
 } from "react-simple-maps";
 
+import {BsSuitHeart}  from 'react-icons/bs'
+
+import { ACTIONS } from "../../App";
+
 import allStates from "./allStates.json";
 
 import { geoCentroid } from "d3-geo";
@@ -14,6 +18,8 @@ import { geoCentroid } from "d3-geo";
 import axios from "axios";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
+
+
 
 const offsets = {
   VT: [50, -8],
@@ -27,7 +33,8 @@ const offsets = {
   DC: [49, 21],
 };
 
-function Testing() {
+function US({dispatch, wish}) {
+
   const [flag, setFlag] = useState("");
 
   const [stateName, setStateName] = useState("");
@@ -61,6 +68,7 @@ function Testing() {
       <h1>U.S Map</h1>
       <div className="State-Details">
         <h2>{stateName}</h2>
+      
         {flag ? (
           <img
             className="State-Flag"
@@ -73,7 +81,9 @@ function Testing() {
             src={"http://www.9to5carwallpapers.com/wp-content/uploads/2017/08/American-Flag-Waving-free-hdWallpapersimages.jpg"}
             alt={"US Flag"}
           />
-        )}
+        )} <br/>
+         <strong> <BsSuitHeart className="empty-heart" onClick={()=> dispatch({type: ACTIONS.ADD, payload: stateName})}/> Add {stateName} to Travel Wishlist </strong>
+        
       </div>
       <div className="US-map">
         <ComposableMap projection="geoAlbersUsa">
@@ -142,4 +152,4 @@ function Testing() {
   );
 }
 
-export default Testing;
+export default US;

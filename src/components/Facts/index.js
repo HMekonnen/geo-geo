@@ -1,10 +1,20 @@
 import React from "react";
 import NumberFormat from "react-number-format";
+import {BsSuitHeart} from 'react-icons/bs'
+import { ACTIONS } from "../../App";
 
 
-function Facts({ data }) {
+function Facts({ data, dispatch, wish }) {
    
+
+ const COUNTRY = data.name
     
+//   function handleSubmit(e){
+//     e.preventDefault();
+//     dispatch({type: ACTIONS.ADD, payload:{data}})
+    
+// }
+
   return (
     <div className="Fact-Display">
 
@@ -24,6 +34,9 @@ function Facts({ data }) {
 
         <li> Timezone: {data?.timezones} </li>
         
+      <strong><BsSuitHeart className='empty-heart' onClick={() => dispatch({ type: ACTIONS.ADD, payload: COUNTRY })}/> Add {COUNTRY} to Travel Wishlist </strong>
+       
+       
 
 
       </div>

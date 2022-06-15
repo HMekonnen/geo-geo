@@ -19,12 +19,14 @@ import ReactTooltip from "react-tooltip";
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
+  // import {BsSuitHeart} from 'react-icons/bs'
+
 function Map() {
 
 
   const [content, setContent] = useState(""); // Used w/ React toolTip - to show country name upon hover 
 
- 
+
 
   const [countryData, setCountryData] = useState({  // Schema for details to be extracted for countries API
     name: "",
@@ -88,6 +90,7 @@ function Map() {
         <Flags flag={countryData.flag} name={countryData.name} />
 
         <Facts data={countryData} />
+
         
         <ComposableMap data-tip="">
 
@@ -113,10 +116,11 @@ function Map() {
                     onClick={() => {
 
                       const { ISO_A2 } = geo.properties;
-
+                      
                       // console.log(geo);  - Spot check
 
                       fetchData(ISO_A2);
+                      
 
                     }}
 
